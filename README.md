@@ -89,6 +89,16 @@ git merge upstream/main
 2. Select your repository during the deployment process.
 3. Add environment variables by uploading the .env file values.
 
+## Star History
+
+<a href="https://star-history.com/#AIFlow-agent/AIFlow-Agent&Date">
+ <picture>
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=AIFlow-agent/AIFlow-Agent&type=Date&theme=dark" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=AIFlow-agent/AIFlow-Agent&type=Date" />
+   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=AIFlow-agent/AIFlow-Agent&type=Date" />
+ </picture>
+</a>
+
 # License
 
 AI Flow is licensed under the MIT License. See LICENSE for more details.
