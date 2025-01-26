@@ -1,0 +1,15 @@
+{
+  "name": "My First NFT",
+  "description": "This is a description of my first NFT.",
+  "image": "https://mywebsite.com/images/nft-image.png",
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Blue"
+    },
+    {
+      "trait_type": "Rarity",
+      "value": "Rare"
+    }
+  ]
+}
