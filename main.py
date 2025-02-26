@@ -2,6 +2,8 @@ from utils.logging_utils import enable_logging, setup_logging
 from sia.sia import Sia
 import asyncio
 import os
+from modules.rag.api.routes import app
+import uvicorn
 
 from dotenv import load_dotenv
 
@@ -39,7 +41,10 @@ async def main():
     )
 
     sia.run()
-
+    # uvicorn.run(app, host="0.0.0.0", port=8000)
 
 if __name__ == "__main__":
     asyncio.run(main())
+
+
+

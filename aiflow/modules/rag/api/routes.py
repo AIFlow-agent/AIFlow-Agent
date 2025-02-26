@@ -15,18 +15,18 @@ async def upload_document(file: UploadFile = File(...)):
     if not file.filename.endswith((".pdf", ".txt")):
         raise HTTPException(status_code=400, detail="Only PDF and TXT files are allowed")
     
-    # 保存文件到临时目录
+    # save file to temp fileß
     file_path = f"{Config.TEMP_DIR}/{file.filename}"
     os.makedirs(Config.TEMP_DIR, exist_ok=True)
     with open(file_path, "wb") as f:
         f.write(await file.read())
     
-    # 处理文档并生成嵌入
+    # load and process documents
     texts = DocumentProcessor.load_and_process_documents(file_path)
     for text in texts:
         vector_store.add_documents([text])
     
-    # 存储文档元数据
+    # save metad ata
     doc_id = Database.store_document_metadata(file.filename, file_path)
     
     return {"id": doc_id, "file_name": file.filename, "file_path": file_path, "created_at": datetime.now()}
@@ -44,11 +44,11 @@ async def delete_document(doc_id: int):
     if not metadata:
         raise HTTPException(status_code=404, detail="Document not found")
     
-    # 删除文档文件
+    # delete doc file
     if os.path.exists(metadata[2]):
         os.remove(metadata[2])
     
-    # 删除元数据
+    # delete meta data
     Database.delete_document_metadata(doc_id)
     
     return {"message": "Document deleted successfully"}
