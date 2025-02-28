@@ -1,8 +1,9 @@
+import os
+import psycopg2
 from fastapi import FastAPI, File, UploadFile
 from fastapi.staticfiles import StaticFiles
 from ingest import process_file
 from query import rag_query
-import os
 
 app = FastAPI()
 
@@ -16,6 +17,27 @@ async def upload_file(file: UploadFile = File(...)):
     
     process_file(file_path)
     return {"status": "success"}
+
+
+@app.get("/get/{doc_id}")
+async def get_document(doc_id: str):
+    conn = psycopg2.connect(**Config.get_postgres_config())
+    cur = conn.cursor()
+    cur.execute("SELECT * FROM documents WHERE id = %s", (doc_id,))
+    result = cur.fetchone()
+    cur.close()
+    conn.close()
+    return result
+
+@app.get("/delete/{doc_id}")
+async def delete_document(doc_id: str):
+    conn = psycopg2.connect(**Config.get_postgres_config())
+    cur = conn.cursor()
+    cur.execute("DELETE FROM documents WHERE id = %s", (doc_id,))
+    conn.commit()
+    cur.close()
+    conn.close()
+
 
 @app.get("/query")
 async def query(q: str):
