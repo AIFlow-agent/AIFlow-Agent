@@ -1,0 +1,9 @@
+langchain-core==0.2.1
+langchain-community==0.2.1
+langchain-text-splitters==0.2.0
+fastapi==0.110.0
+uvicorn==0.29.0
+psycopg2-binary==2.9.9
+pgvector==0.2.6
+sentence-transformers==2.7.0
+python-multipart==0.0.9
